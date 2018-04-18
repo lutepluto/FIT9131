@@ -23,11 +23,45 @@ public class Player {
 
     /**
      * @param name
+     * @throws IllegalArgumentException
      */
-    public Player(String name) {
+    public Player(String name) throws IllegalArgumentException {
+        if (outOfRange(name)) {
+            throw new IllegalArgumentException("The name's length should be between 1 to 8");
+        }
+        if (containsInValidCharacters(name)) {
+            throw new IllegalArgumentException("The name can only contain characters");
+        }
         this.name = name;
         this.guesses = 0;
         this.score = 0;
+    }
+
+    /**
+     * Checks the name's length is out of range
+     *
+     * @param name
+     * @return
+     */
+    public boolean outOfRange(String name) {
+        int len = name.length();
+        return len < 1 || len > 8;
+    }
+
+    /**
+     * Checks the name contains any invalid characters
+     *
+     * @param name
+     * @return
+     */
+    public boolean containsInValidCharacters(String name) {
+        for (int i = 0; i < name.length(); i++) {
+            int code = name.charAt(i);
+            if (code < 65 || (code > 90 && code < 97) || code > 122) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
