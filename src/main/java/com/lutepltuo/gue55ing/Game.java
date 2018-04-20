@@ -6,7 +6,6 @@ package com.lutepltuo.gue55ing;
 import java.io.BufferedInputStream;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -137,7 +136,7 @@ public class Game {
         System.out.printf("%s, plz enter a lucky number:\n", player.getName());
         while (true) {
            try {
-               int number = scanner.nextInt();
+               int number = Integer.parseInt(scanner.nextLine());
                if ((number < 1 || number > 100) && number != HUAMN_ABANDON) {
                    System.out.println("Plz enter a number bewteen 1 and 100.");
                    continue;
@@ -146,7 +145,7 @@ public class Game {
                    System.out.println("Sorry, the number entered is out of the possible range.");
                }
                return number;
-           } catch (InputMismatchException e) {
+           } catch (NumberFormatException e) {
                System.out.println("Plz enter a valid number.");
            }
         }
