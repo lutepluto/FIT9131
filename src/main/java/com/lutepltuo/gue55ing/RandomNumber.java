@@ -27,7 +27,7 @@ public class RandomNumber {
      * @throws IllegalArgumentException
      */
     public int generateNumber() throws IllegalArgumentException {
-        return this.generateNumber(max);
+        return this.generateNumber(this.min, this.max);
     }
 
     /**
@@ -38,7 +38,19 @@ public class RandomNumber {
      * @throws IllegalArgumentException
      */
     public int generateNumber(int max) throws IllegalArgumentException {
-        if (max > 100) {
+        return this.generateNumber(this.min, max);
+    }
+
+    /**
+     * Generate random number between specified min and max
+     *
+     * @param min
+     * @param max
+     * @return
+     * @throws IllegalArgumentException
+     */
+    public int generateNumber(int min, int max) throws IllegalArgumentException {
+        if (min < this.min || max > this.max) {
             throw new IllegalArgumentException("Max number should not be excceded 100.");
         } else {
             return min + Double.valueOf(Math.random() * (max - min)).intValue();

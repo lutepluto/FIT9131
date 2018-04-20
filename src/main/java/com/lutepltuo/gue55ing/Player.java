@@ -43,7 +43,7 @@ public class Player {
      * @param name
      * @return
      */
-    public boolean outOfRange(String name) {
+    private boolean outOfRange(String name) {
         int len = name.length();
         return len < 1 || len > 8;
     }
@@ -54,7 +54,7 @@ public class Player {
      * @param name
      * @return
      */
-    public boolean containsInValidCharacters(String name) {
+    private boolean containsInValidCharacters(String name) {
         for (int i = 0; i < name.length(); i++) {
             int code = name.charAt(i);
             if (code < 65 || (code > 90 && code < 97) || code > 122) {
@@ -62,6 +62,31 @@ public class Player {
             }
         }
         return false;
+    }
+
+    /**
+     * @return
+     */
+    protected boolean isComputer() {
+        return false;
+    }
+
+    /**
+     * @param score
+     * @return
+     */
+    public int score(int score) {
+        this.score += score;
+        return this.score;
+    }
+
+    /**
+     * @param number
+     * @return
+     */
+    public int lastGuess(int number) {
+        this.guesses = number;
+        return this.guesses;
     }
 
     /**
@@ -97,13 +122,6 @@ public class Player {
      */
     public void setGuesses(int guesses) {
         this.guesses = guesses;
-    }
-
-    /**
-     * @param score the score to set
-     */
-    public void setScore(int score) {
-        this.score = score;
     }
 
 }
